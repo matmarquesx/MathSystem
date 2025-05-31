@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora MathSystem</title>
+    <title>Calculadora TypeScript</title>
     <style>
         * {
             box-sizing: border-box;
@@ -33,7 +33,7 @@
         }
         
         .header {
-            background-color: #1e4278;
+            background-color: #4a6fa5;
             color: white;
             padding: 20px;
             text-align: center;
@@ -94,7 +94,7 @@
             padding: 12px;
             border: none;
             border-radius: 5px;
-            background-color: #1e4278;
+            background-color: #4a6fa5;
             color: white;
             font-size: 16px;
             cursor: pointer;
@@ -102,8 +102,7 @@
         }
         
         button:hover {
-            background-color: #5a85c6;
-;
+            background-color: #3a5a8a;
         }
         
         #calcular {
@@ -140,7 +139,7 @@
         .result p {
             font-size: 24px;
             font-weight: bold;
-            color: #5a85c6;
+            color: #4a6fa5;
         }
         
         .history h2 {
@@ -167,7 +166,7 @@
         
         .history-item .operation {
             font-weight: bold;
-            color: #5a85c6;
+            color: #4a6fa5;
         }
         
         .history-item .result {
@@ -178,38 +177,97 @@
             margin-top: 5px;
         }
         
-        .second-number-container {
+        .input-container {
             display: block;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .bhaskara-result {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>MathSystem</h1>
+            <h1>Calculadora TypeScript</h1>
         </div>
         <div class="content">
             <div class="calculator">
                 <div class="input-group">
                     <label for="operacao">Operação:</label>
                     <select id="operacao">
+                        <!-- Operações básicas -->
                         <option value="soma">Soma</option>
                         <option value="subtracao">Subtração</option>
                         <option value="multiplicacao">Multiplicação</option>
                         <option value="divisao">Divisão</option>
                         <option value="potencia">Potência</option>
                         <option value="raiz">Raiz Quadrada</option>
+                        
+                        <!-- Multiplicadores -->
+                        <option value="dobro">Dobro</option>
+                        <option value="triplo">Triplo</option>
+                        <option value="quadruplo">Quádruplo</option>
+                        <option value="quintuplo">Quíntuplo</option>
+                        <option value="sextuplo">Sêxtuplo</option>
+                        
+                        <!-- Potências específicas -->
+                        <option value="quadrado">Quadrado</option>
+                        <option value="cubo">Cubo</option>
+                        <option value="quarta_potencia">Quarta Potência</option>
+                        <option value="quinta_potencia">Quinta Potência</option>
+                        <option value="sexta_potencia">Sexta Potência</option>
+                        
+                        <!-- Funções especiais -->
+                        <option value="bhaskara">Bhaskara</option>
+                        <option value="media_aritmetica">Média Aritmética (4 números)</option>
+                        <option value="par_impar">Verificar Par ou Ímpar</option>
                     </select>
                 </div>
                 
-                <div class="input-group">
-                    <label for="numero1">Primeiro Número:</label>
+                <!-- Campos para operações com um número -->
+                <div class="input-group" id="numero1-container">
+                    <label for="numero1">Número:</label>
                     <input type="number" id="numero1" placeholder="Digite um número">
                 </div>
                 
-                <div class="input-group second-number-container">
+                <!-- Campo para segundo número (operações básicas) -->
+                <div class="input-group" id="numero2-container">
                     <label for="numero2">Segundo Número:</label>
                     <input type="number" id="numero2" placeholder="Digite um número">
+                </div>
+                
+                <!-- Campos para Bhaskara -->
+                <div class="input-group hidden" id="bhaskara-container">
+                    <label for="coef-a">Coeficiente a:</label>
+                    <input type="number" id="coef-a" placeholder="Digite o valor de a">
+                    
+                    <label for="coef-b">Coeficiente b:</label>
+                    <input type="number" id="coef-b" placeholder="Digite o valor de b">
+                    
+                    <label for="coef-c">Coeficiente c:</label>
+                    <input type="number" id="coef-c" placeholder="Digite o valor de c">
+                </div>
+                
+                <!-- Campos para Média Aritmética -->
+                <div class="input-group hidden" id="media-container">
+                    <label for="num1">Primeiro Número:</label>
+                    <input type="number" id="num1" placeholder="Digite o primeiro número">
+                    
+                    <label for="num2">Segundo Número:</label>
+                    <input type="number" id="num2" placeholder="Digite o segundo número">
+                    
+                    <label for="num3">Terceiro Número:</label>
+                    <input type="number" id="num3" placeholder="Digite o terceiro número">
+                    
+                    <label for="num4">Quarto Número:</label>
+                    <input type="number" id="num4" placeholder="Digite o quarto número">
                 </div>
                 
                 <div class="buttons">
@@ -219,14 +277,16 @@
                 
                 <div class="result">
                     <h3>Resultado:</h3>
-                    <p id="resultado">-</p>
+                    <div id="resultado-container">
+                        <p id="resultado">-</p>
+                    </div>
                 </div>
             </div>
             
             <div class="history">
                 <h2>Histórico de Operações</h2>
                 <div id="historico-container">
-                    <p>Nenhuma operação realizada ainda.</p>
+                    <!-- Histórico será preenchido dinamicamente -->
                 </div>
             </div>
         </div>
