@@ -20,8 +20,6 @@ Uma calculadora matemática completa implementada em TypeScript, disponível tan
 - [Como Usar](#-como-usar)
 - [Demonstração](#-demonstração)
 - [Aprendizados](#-aprendizados)
-- [Contribuição](#-contribuição)
-- [Licença](#-licença)
 
 ## ✨ Funcionalidades
 
